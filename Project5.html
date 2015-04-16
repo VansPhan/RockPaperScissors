@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Van's Project 5</title>
+	<link rel="stylesheet" type="text/css" href="Project 5.css">
+</head>
+<body>
+	<div class="outer">
+	<div class="container">
+	<tr>
+		<h1>Rock Paper Scissors</h1>
+	</tr>
+	<table>
+	<tr>
+		<td id="rock" onclick="rockClicked()"><img src="rock.jpg" alt="rock"></td>
+		<td id="player" rowspan="3"><img src="leftPaperHand.jpg" alt="leftPaperHand"></td>
+		<td id="computer" rowspan="3"><img src="rightRockHand.jpg" alt="rightRockHand"></td>
+	</tr>
+	<tr>
+		<td id="paper" onclick="paperClicked()"><img src="paper.jpg" alt="paper"></td>
+	</tr>
+	<tr>
+		<td id="scissors" onclick="scissorsClicked()"><img src="scissors.jpg" alt="scissors"></td>
+	</tr>
+	</table>
+	<tr>
+		<h1>Win Streak: <span id="streak">0</span> Wins: <span id="win">0</span> Losses: <span id="lose">0</span> Ties: <span id="tie">0</span></h1>
+	</tr>
+	</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+
+	function rockClicked() {
+		var p = "rock";
+		var val = 1;
+		player(val);
+		var com = computer();
+		var result = compare(p, com);
+		increment(result);
+	}
+
+	function paperClicked() {
+		var p = "paper";
+		var val = 2;
+		player(val);
+		var com = computer();
+		var result = compare(p, com);
+		increment(result);
+	}
+
+	function scissorsClicked() {
+		var p = "scissors";
+		var val = 3;
+		player(val);
+		var com = computer();
+		var result = compare(p, com);
+		increment(result);
+	}
+
+	function player(value) {
+		switch (value) {
+			case 1:
+				document.getElementById("player").innerHTML = "<img src='leftRockHand.jpg' alt='leftRockHand'>";
+			break;
+			case 2:
+				document.getElementById("player").innerHTML = "<img src='leftPaperHand.jpg' alt='leftPaperHand'>";
+			break;
+			case 3:
+				document.getElementById("player").innerHTML = "<img src='leftScissorHand.jpg' alt='leftScissorHand'>";
+			break;
+			default:
+			break;
+		}
+	}
+
+	function computer() {
+		var random = Math.random();
+		if (random < 0.3333) {
+			document.getElementById("computer").innerHTML = "<img src='rightRockHand.jpg' alt='rightRockHand'>"
+			random = "rock";
+		}
+		else if (random > 0.3333 && random < 0.6666) {
+			document.getElementById("computer").innerHTML = "<img src='rightPaperHand.jpg' alt='rightPaperHand'>"
+			random = "paper";
+		}
+		else {
+			document.getElementById("computer").innerHTML = "<img src='rightScissorHand.jpg' alt='rightScissorHand'>"
+			random = "scissors";
+		}
+		return random;
+	}
+
+	function compare(player, computer) {
+		var checker;
+		if (player === "rock") {
+			if (computer === "scissors") {
+				checker = 1;
+			}
+			else if (computer === "rock") {
+				checker = 3;
+			}
+			else {
+				checker = 2;
+			}
+		}
+		if (player === "paper") {
+			if (computer === "rock") {
+				checker = 1;
+			}
+			else if (computer === "paper") {
+				checker = 3;
+			}
+			else {
+				checker = 2;
+			}
+		}
+		if (player === "scissors") {
+			if (computer === "paper") {
+				checker = 1;
+			}
+			else if (computer === "scissors") {
+				checker = 3;
+			}
+			else {
+				checker = 2;
+			}
+		}
+		return checker;
+	}
+
+	function increment(val) {
+		var streak = document.getElementById("streak");
+		var streakVal = parseInt(streak.innerHTML);
+		var win = document.getElementById("win");
+		var winVal = parseInt(win.innerHTML);
+		var lose = document.getElementById("lose");
+		var loseVal = parseInt(lose.innerHTML);
+		var tie = document.getElementById("tie");
+		var tieVal = parseInt(tie.innerHTML);
+		switch (val) {
+			case 1:
+				winVal++;
+				win.innerHTML = winVal;
+			break;
+			case 2:
+				loseVal++;
+				lose.innerHTML = loseVal;
+			break;
+			case 3:
+				tieVal++;
+				tie.innerHTML = tieVal;
+			break;
+			default:
+			break;
+		}
+
+		if (val == 1) {
+			streakVal++;
+			streak.innerHTML = streakVal;
+		}
+		else {
+			streak.innerHTML = 0;
+		}
+	}
+
+</script>
+</html>

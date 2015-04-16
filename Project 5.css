@@ -1,0 +1,23 @@
+table, td, tr, .container {
+	background-color: white;
+	border: 1px solid black;
+	width: 700px;
+ 	margin-left: auto;
+  	margin-right: auto;
+  	text-align: center;
+}
+
+.outer {
+	background-color: #EA6045;
+	-webkit-animation: pulse 5s infinite alternate;
+	padding: 350px;
+}
+
+@-webkit-keyframes pulse {
+  0% {background-color: #EA6045;}
+  25% {background-color: #F8CA4D;}
+  50% {background-color: #F5E5C0;}
+  75% {background-color: #3F5666;}
+  100% {background-color: #2F3440;}
+}
+
